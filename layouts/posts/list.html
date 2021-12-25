@@ -1,0 +1,24 @@
+{{ define "main" }}
+<header class="content__header">
+  <h1>
+    <a href=".">
+      {{ .Title }}
+    </a>
+  </h1>
+  {{ .Content }}
+</header>
+
+{{ range .Pages.GroupByDate "2006" "desc" }}
+<h3 class="nocount">{{ .Key }}</h3>
+<ul>
+  {{ range .Pages.ByDate.Reverse }}
+  <li>
+    {{ .Date | time.Format "2006-01-02" }}:
+    <a href="{{ .Permalink }}">{{ .Title }}</a>
+    <span class="post__tag">{{- if isset .Params "tags" }}{{ range first 1 .Params.tags }}({{ . }}){{ end }}{{ end
+      }}</span>
+  </li>
+  {{ end }}
+</ul>
+{{ end }}
+{{ end }}

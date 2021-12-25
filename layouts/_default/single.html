@@ -1,0 +1,33 @@
+{{ define "main" }}
+<p>
+{{- if not .Date.IsZero }}
+  Posted {{ .Date | time.Format "2006-01-02" }}
+  {{- if ne .Lastmod .Date }}, updated {{ .Lastmod.Format "2006-01-02" }}{{- end }}
+{{- end }}
+</p>
+<header class="content__header">
+	<h1>
+		<a href="{{ .RelPermalink }}">
+			{{ .Title | markdownify }}
+		</a>
+	</h1>
+</header>
+<article class="content__body">
+  <p>{{ .Description }}</p>
+  {{ with .Params.toc }}{{ $.Page.TableOfContents }}<hr>{{ end }}
+  <article class="content__main">
+	  {{ .Content }}
+  </article>
+</article>
+<hr>
+<footer class="content__footer">
+  {{- with .Params.tags }}
+  <p>
+    Tags:
+    {{- range . | sort }}
+      <a href="{{ $.Site.BaseURL }}tags/{{ . | urlize }}">{{ . }}</a>
+    {{ end }}
+  </p>
+  {{ end }}
+</footer>
+{{ end }}

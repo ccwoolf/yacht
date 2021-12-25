@@ -1,0 +1,13 @@
+<title>
+{{ .Site.Title }}
+{{ if ne .Site.Title .Title }}
+  {{ with .Page.Title }}
+    &ndash; {{ . }}
+  {{ end }}
+{{ end }}
+</title>
+{{ with .Site.Params.about }}<meta name="description" content=".description }}">{{ end }}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{{ printf "css/colours/%s.css" .Site.Params.theme.palette | relURL }}">
+<link rel="stylesheet" href="{{ "css/yacht.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">

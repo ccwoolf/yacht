@@ -1,0 +1,10 @@
+<div class="page__logo"><a href="{{ .Site.BaseURL }}" class="page__logo-inner">{{ .Site.Title }}</a></div>
+<nav class="page__nav main-nav">
+  <ul>
+  {{ range .Site.Menus.main }}
+  <li class="main-nav__item">
+    <a class="nav-main-item" href="{{ .URL }}">{{ .Name }}</a>
+  </li>
+  {{ end }}
+  </ul>
+</nav>

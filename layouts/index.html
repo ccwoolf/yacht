@@ -1,0 +1,17 @@
+{{ define "main" }}
+<article class="content__body">
+  {{ range (where .Site.RegularPages "Title" "==" "About") }}
+    <p>{{ .Summary | plainify }}</p>
+  {{ end }}
+  <h1>Posts</h1>
+  <ul>
+    {{ range (where .Site.RegularPages "Section" "!=" "") }}
+    <li>
+      {{ .Date | time.Format "2006-01-02" }}:
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+      <span class="post__tag">{{- if isset .Params "tags" }}{{ range first 1 .Params.tags }}({{ . }}){{ end }}{{ end }}</span>
+    </li>
+    {{ end }}
+  </ul>
+</article>
+{{ end }}
